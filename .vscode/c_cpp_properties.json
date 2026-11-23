@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "compilerPath": "/usr/bin/g++-14",
+            "cppStandard": "c++23",
+            "intelliSenseMode": "linux-gcc-x64",
+            "includePath": [
+                "${workspaceFolder}/include",
+                "${workspaceFolder}/tests"
+            ],
+            "defines": [
+                "_GLIBCXX_ASSERTIONS"
+            ],
+            "compilerArgs": [
+                "-std=c++23"
+            ]
+        }
+    ],
+    "version": 4
+}

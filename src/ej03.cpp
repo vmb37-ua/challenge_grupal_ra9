@@ -11,7 +11,19 @@ std::pair<Dataset, Dataset> split_by_match(Dataset const& d, double test_fractio
                                            Rng& rng) {
    Dataset train;
    Dataset test;
-   // ◉◉YOUR CODE◉◉
+   std::set<int> matches(d.match.begin(), d.match.end());
+   std::vector<int> ids(matches.begin(), matches.end());
+   shuffle(ids, rng);
+   int k = std::round(test_fraction*ids.size());
+   std::set<int> const id_test(ids.end()-k, ids.end());
+   for (int i=0; i<d.y.size(); i++){
+      if(id_test.contains(d.match[i])){ 
+         push_row(test, d ,i); // FIX S 1 : Argumentos invertidos
+      } 
+      else{
+         push_row(train, d ,i); // FIX S 1
+      }
+   }
    return {train, test};
 }
 
