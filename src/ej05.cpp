@@ -17,7 +17,30 @@ Table filter_rallies(Table const& t, int result, int skip) {
 
    Table out{t.columns, {}};
    // ◉◉YOUR CODE◉◉
+   double new_frame = 0.0;
+   std::string match ="";
+   std::string rally = "";
+   for(std::size_t i= 0; i < t.rows.size(); i++){
+      if(match != t.rows[i][m] || rally != t.rows[i][r]){
+         match = t.rows[i][m];
+         rally = t.rows[i][r];
+         new_frame = std::stol(t.rows[i][f]);
+      }
+      if(t.rows[i][side] == "left" && (std::stoi(t.rows[i][res]) == result) && (std::stol(t.rows[i][f]) - new_frame >= skip)){
+         out.rows.push_back(t.rows[i]); // FIX <S><1>: Error escribiendo push_back
+      }
+   }
    return out;
 }
 
 } // namespace ml
+/* === FIXES
+;;  Tipo: Cant.
+;;  *  N:    0     (no existe)
+;;  *  E:    0     (errónea)
+;;  *  S:    1     (sintaxis)
+;;  *  F:    0     (falta algo)
+;;
+;; EXPLICACIONES ADICIONALES DE FIXES (si es necesario)
+;;  *
+*/
